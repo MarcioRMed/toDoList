@@ -4,7 +4,8 @@
   "description": "projeto \"to do list\" usando node.js mondoDB",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/MarcioRMed/toDoList#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15"
   }
 }
