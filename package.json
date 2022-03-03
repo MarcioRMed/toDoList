@@ -1,0 +1,22 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "projeto \"to do list\" usando node.js mondoDB",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcioRMed/toDoList.git"
+  },
+  "author": "Márcio Ramos Medeiros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcioRMed/toDoList/issues"
+  },
+  "homepage": "https://github.com/MarcioRMed/toDoList#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
