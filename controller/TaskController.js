@@ -3,14 +3,12 @@
 const Task = require("../models/Task");
 
 const getAllTasks = async (req, res) => {
-
-  try{
+  try {
     const tasksList = await Task.find(); // pega as listas no bando dados await - espera o banco dados
-    return res.render("index", {tasksList}); // separou o metodo da rota
-  } catch (err){
+    return res.render("index", { tasksList, task: null }); // separou o metodo da rota
+  } catch (err) {
     res.status(500).send({ error: err.message });
   }
-  
 };
 
 const createTask = async (req, res) => {
@@ -30,8 +28,32 @@ const createTask = async (req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const task = await Task.findOne({ _id: req.params.id });
+    const tasksList = await Task.find();
+    res.render("index", { task, tasksList });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
+
+const updateOneTask = async (req, res) => {
+  try {
+    const task = req.body;
+    await Task.updateOne({ _id: req.params.id}, task); // erro nesta linha
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
+
 // exportando os métodos
 module.exports = {
   getAllTasks,
   createTask,
+  getById,
+  updateOneTask,
 };
+
+
