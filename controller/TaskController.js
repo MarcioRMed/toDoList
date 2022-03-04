@@ -12,6 +12,7 @@ const getAllTasks = async (req, res) => {
     }, 1000);
 
     const tasksList = await Task.find(); // pega as listas no bando dados await - espera o banco dados
+
     return res.render("index", {
       tasksList,
       task: null,
@@ -75,7 +76,7 @@ const getById = async (req, res) => {
 const updateOneTask = async (req, res) => {
   try {
     const task = req.body;
-    await Task.updateOne({ _id: req.params.id }, task); // erro nesta linha
+    await Task.updateOne({ _id: req.params.id }, task);
     message = "Tarefa atualizada com sucesso!";
     type = "success";
     res.redirect("/");
@@ -96,6 +97,19 @@ const deleteOneTask = async (req, res) => {
   }
 };
 
+const taskCheck = async (req, res) => {
+  try {
+    const task = await Task.findOne({ _id: req.params.id });
+
+    task.check ? (task.check = false) : (task.check = true);
+
+    await Task.updateOne({ _id: req.params.id }, task);
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
+
 // exportando os métodos
 module.exports = {
   getAllTasks,
@@ -103,4 +117,5 @@ module.exports = {
   getById,
   updateOneTask,
   deleteOneTask,
+  taskCheck,
 };
